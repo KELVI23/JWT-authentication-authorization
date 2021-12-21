@@ -21,15 +21,9 @@ module.exports = function(app) {
     next();
   });
 
-  /* ERROR
-  Route.post() requires a callback function but got a [object Undefined]
-  */
-  app.post("/api/auth/signup", (req, res) => {
-    [ verifySignUp.checkDuplicateUsernameOrEmail, verifySignUp.checkRolesExisted], controller.signup
-    });
 
-  // app.post("/api/auth/signup",[ verifySignUp.checkDuplicateUsernameOrEmail, verifySignUp.checkRolesExisted], controller.signup
-  //   );
+  app.post("/api/auth/signup",[ verifySignUp.checkDuplicateUsers, verifySignUp.checkRoles], controller.signup
+    );
     
   app.post("/api/auth/signin", controller.signin);
 };
